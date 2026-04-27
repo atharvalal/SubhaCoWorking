@@ -15,7 +15,7 @@ const featuredRoom = {
   name: "Premium Meeting Room",
   image: "/meeting-boardroom.svg",
   tag: "Client-ready setup",
-  capacity: "6 to 30 guests",
+  capacity: "6 to 10 guests",
   description:
     "A polished meeting environment for presentations, leadership discussions, workshops, interviews, and private client sessions.",
   perks: [
