@@ -25,33 +25,33 @@ const reasons = [
 
 export default function WhyUs() {
   return (
-    <section id="why-shubha" className="px-4 py-24 sm:px-6">
+    <section id="why-shubha" className="px-4 py-20 sm:px-6 sm:py-24">
       <div className="mx-auto max-w-7xl">
-        <div className="mx-auto mb-14 max-w-3xl text-center">
-          <span className="inline-flex min-h-11 items-center rounded-full border border-stone-300 bg-white/80 px-5 text-[13px] font-bold uppercase tracking-[0.16em] text-slate-600">
+        <div className="mx-auto mb-10 max-w-3xl text-center sm:mb-14">
+          <span className="inline-flex min-h-10 items-center rounded-full border border-stone-300 bg-white/80 px-4 text-[11px] font-bold uppercase tracking-[0.14em] text-slate-600 sm:min-h-11 sm:px-5 sm:text-[13px] sm:tracking-[0.16em]">
             Why Shubha
           </span>
-          <h2 className="mt-5 text-[clamp(2.3rem,4.6vw,4.4rem)] font-black leading-[1.02] tracking-[-0.06em] text-slate-950">
+          <h2 className="mt-4 text-[clamp(2rem,8vw,4.4rem)] font-black leading-[1.02] tracking-[-0.06em] text-slate-950 sm:mt-5">
             Designed to look calm, clear, and
             <em className="not-italic text-slate-500"> immediately premium</em>
           </h2>
-          <p className="mt-4 text-lg leading-8 text-slate-600">
+          <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
             The building presentation, room quality, and support model all work together so your business feels
             better positioned in front of clients and guests.
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-5 md:grid-cols-2 md:gap-6 xl:grid-cols-4">
           {reasons.map(({ icon: Icon, title, description }) => (
             <article
               key={title}
-              className="rounded-[30px] border border-stone-200 bg-white/90 p-7 shadow-[0_20px_48px_rgba(17,28,57,0.08)]"
+              className="rounded-[26px] border border-stone-200 bg-white/90 p-6 shadow-[0_20px_48px_rgba(17,28,57,0.08)] sm:rounded-[30px] sm:p-7"
             >
-              <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-stone-100 text-slate-700">
+              <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-stone-100 text-slate-700 sm:h-14 sm:w-14">
                 <Icon size={20} />
               </div>
-              <h3 className="mt-5 text-2xl font-black tracking-[-0.04em] text-slate-950">{title}</h3>
-              <p className="mt-3 text-base leading-8 text-slate-600">{description}</p>
+              <h3 className="mt-4 text-xl font-black tracking-[-0.04em] text-slate-950 sm:mt-5 sm:text-2xl">{title}</h3>
+              <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base sm:leading-8">{description}</p>
             </article>
           ))}
         </div>
