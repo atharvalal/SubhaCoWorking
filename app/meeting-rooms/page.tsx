@@ -1,15 +1,16 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, Coffee, MonitorPlay, Users, Wifi } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle2,
+  Coffee,
+  MonitorPlay,
+  Users,
+  Wifi,
+} from "lucide-react";
 import Footer from "@/components/Footer";
+import InquiryEmailForm from "@/components/InquiryEmailForm";
 import Navbar from "@/components/Navbar";
-
-export const metadata: Metadata = {
-  title: "Meeting Rooms | Shubha Shree Bhawan",
-  description:
-    "Explore premium meeting rooms at Shubha Shree Bhawan with guest-ready interiors, practical perks, and direct booking support.",
-};
 
 const featuredRoom = {
   name: "Premium Meeting Room",
@@ -30,28 +31,36 @@ const perks = [
   {
     icon: MonitorPlay,
     title: "Presentation-ready screens",
-    description: "Display support that keeps pitches, training, and reviews running smoothly.",
+    description:
+      "Display support that keeps pitches, training, and reviews running smoothly.",
   },
   {
     icon: Wifi,
     title: "Reliable high-speed internet",
-    description: "Stable connectivity for remote guests, demos, and uninterrupted collaboration.",
+    description:
+      "Stable connectivity for remote guests, demos, and uninterrupted collaboration.",
   },
   {
     icon: Coffee,
     title: "Refreshments on request",
-    description: "Tea, coffee, and light serving options when you need a more hosted experience.",
+    description:
+      "Tea, coffee, and light serving options when you need a more hosted experience.",
   },
   {
     icon: Users,
     title: "Layouts for different group sizes",
-    description: "Choose a room that fits interviews, strategy sessions, or larger internal workshops.",
+    description:
+      "Choose a room that fits interviews, strategy sessions, or larger internal workshops.",
   },
 ];
 
 const directContact = [
   { label: "Phone", value: "+977 980-8100067", href: "tel:+9779808100067" },
-  { label: "Email", value: "buddhalifestyle.np@gmail.com", href: "mailto:buddhalifestyle.np@gmail.com" },
+  {
+    label: "Email",
+    value: "buddhalifestyle.np@gmail.com",
+    href: "mailto:buddhalifestyle.np@gmail.com",
+  },
   {
     label: "Location",
     value: "Baluwatar, Kathmandu, Nepal",
@@ -81,8 +90,9 @@ export default function MeetingRoomsPage() {
               <span>professional meetings.</span>
             </h1>
             <p>
-              Use Shubha Shree Bhawan for private discussions, presentations, workshops, and team sessions in
-              rooms that feel polished, practical, and guest-ready.
+              Use Shubha Shree Bhawan for private discussions, presentations,
+              workshops, and team sessions in rooms that feel polished,
+              practical, and guest-ready.
             </p>
             <div className="button-row">
               <Link href="#meeting-contact" className="button-primary">
@@ -120,8 +130,9 @@ export default function MeetingRoomsPage() {
               <em> right mood and layout</em>
             </h2>
             <p className="lead-copy">
-              Browse the available room types below. Each card focuses on the experience and perks rather than a
-              a single featured room card focused on the experience and perks rather than public pricing.
+              Browse the available room types below. Each card focuses on the
+              experience and perks rather than a a single featured room card
+              focused on the experience and perks rather than public pricing.
             </p>
           </div>
 
@@ -163,8 +174,7 @@ export default function MeetingRoomsPage() {
           <div className="section-header">
             <span className="eyebrow">Perks</span>
             <h2 className="section-title">
-              Everything needed for a
-              <em> smooth meeting day</em>
+              Everything needed for a<em> smooth meeting day</em>
             </h2>
           </div>
 
@@ -182,67 +192,38 @@ export default function MeetingRoomsPage() {
         </div>
       </section>
 
-      <section id="meeting-contact" className="section-shell section-shell--brand section-shell--tight">
+      <section
+        id="meeting-contact"
+        className="section-shell section-shell--brand section-shell--tight"
+      >
         <div className="section-inner contact-split">
           <div className="contact-form-card">
             <h3>Contact us for availability</h3>
             <p style={{ marginBottom: "22px" }}>
-              Tell us the room type, date, and group size. We will guide you to the best option.
+              Tell us the room type, date, and group size. We will guide you to
+              the best option.
             </p>
 
-            <form className="form-grid">
-              <div className="form-field">
-                <label className="form-label" htmlFor="name">
-                  Name
-                </label>
-                <input id="name" className="form-input" type="text" placeholder="Your full name" />
-              </div>
-              <div className="form-field">
-                <label className="form-label" htmlFor="phone">
-                  Phone
-                </label>
-                <input id="phone" className="form-input" type="tel" placeholder="+977" />
-              </div>
-              <div className="form-field">
-                <label className="form-label" htmlFor="email">
-                  Email
-                </label>
-                <input id="email" className="form-input" type="email" placeholder="you@example.com" />
-              </div>
-              <div className="form-field">
-                <label className="form-label" htmlFor="room">
-                  Room Type
-                </label>
-                <select id="room" className="form-input" defaultValue="">
-                  <option value="" disabled>
-                    Select a room
-                  </option>
-                  <option>Boardroom Suite</option>
-                  <option>Focus Room</option>
-                  <option>Workshop Hall</option>
-                </select>
-              </div>
-              <div className="form-field-full">
-                <label className="form-label" htmlFor="message">
-                  Requirements
-                </label>
-                <textarea
-                  id="message"
-                  className="form-textarea"
-                  placeholder="Date, time, number of guests, and any special setup needed"
-                />
-              </div>
-              <div className="form-field-full">
-                <a href="mailto:buddhalifestyle.np@gmail.com" className="button-light" style={{ width: "fit-content" }}>
-                  Email Us
-                </a>
-              </div>
-            </form>
+            <InquiryEmailForm
+              idPrefix="meeting-room"
+              inquiryTypeLabel="Room Type"
+              inquiryTypePlaceholder="Select a room"
+              inquiryTypeOptions={[
+                "Boardroom Suite",
+                "Focus Room",
+                "Workshop Hall",
+              ]}
+              subjectPrefix="Meeting Room Enquiry"
+              messagePlaceholder="Date, time, number of guests, and any special setup needed"
+            />
           </div>
 
           <div className="contact-panel">
             <h3>Direct details</h3>
-            <p>Reach out directly if you want a faster reply or need help choosing the right room.</p>
+            <p>
+              Reach out directly if you want a faster reply or need help
+              choosing the right room.
+            </p>
 
             <div className="contact-detail-list">
               {directContact.map((item) => (
@@ -254,7 +235,9 @@ export default function MeetingRoomsPage() {
                     <strong>{item.label}</strong>
                     <a
                       href={item.href}
-                      target={item.href.startsWith("http") ? "_blank" : undefined}
+                      target={
+                        item.href.startsWith("http") ? "_blank" : undefined
+                      }
                       rel="noreferrer"
                     >
                       {item.value}

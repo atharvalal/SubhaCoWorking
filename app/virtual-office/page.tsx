@@ -11,6 +11,7 @@ import {
   Users,
 } from "lucide-react";
 import Footer from "@/components/Footer";
+import InquiryEmailForm from "@/components/InquiryEmailForm";
 import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
@@ -150,54 +151,14 @@ export default function VirtualOfficePage() {
               Tell us what kind of virtual office setup you need and we will suggest the right option.
             </p>
 
-            <form className="form-grid">
-              <div className="form-field">
-                <label className="form-label" htmlFor="vo-name">
-                  Name
-                </label>
-                <input id="vo-name" className="form-input" type="text" placeholder="Your full name" />
-              </div>
-              <div className="form-field">
-                <label className="form-label" htmlFor="vo-phone">
-                  Phone
-                </label>
-                <input id="vo-phone" className="form-input" type="tel" placeholder="+977" />
-              </div>
-              <div className="form-field">
-                <label className="form-label" htmlFor="vo-email">
-                  Email
-                </label>
-                <input id="vo-email" className="form-input" type="email" placeholder="you@example.com" />
-              </div>
-              <div className="form-field">
-                <label className="form-label" htmlFor="vo-plan">
-                  Service Type
-                </label>
-                <select id="vo-plan" className="form-input" defaultValue="">
-                  <option value="" disabled>
-                    Select a plan type
-                  </option>
-                  <option>Starter</option>
-                  <option>Professional</option>
-                  <option>Enterprise</option>
-                </select>
-              </div>
-              <div className="form-field-full">
-                <label className="form-label" htmlFor="vo-message">
-                  Requirements
-                </label>
-                <textarea
-                  id="vo-message"
-                  className="form-textarea"
-                  placeholder="Tell us about your business and what kind of address or support you need"
-                />
-              </div>
-              <div className="form-field-full">
-                <a href="mailto:buddhalifestyle.np@gmail.com" className="button-light" style={{ width: "fit-content" }}>
-                  Email Us
-                </a>
-              </div>
-            </form>
+            <InquiryEmailForm
+              idPrefix="virtual-office"
+              inquiryTypeLabel="Service Type"
+              inquiryTypePlaceholder="Select a plan type"
+              inquiryTypeOptions={["Starter", "Professional", "Enterprise"]}
+              subjectPrefix="Virtual Office Booking"
+              messagePlaceholder="Tell us about your business and what kind of address or support you need"
+            />
           </div>
 
           <div className="contact-panel">
