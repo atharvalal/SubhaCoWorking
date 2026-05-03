@@ -100,7 +100,7 @@ export async function POST(request: Request) {
     if (missingVars.length > 0) {
       return NextResponse.json(
         {
-          error: `Email is not configured. Missing: ${missingVars.join(", ")}`,
+          error: `Booking is not configured. Missing: ${missingVars.join(", ")}`,
         },
         { status: 500 },
       );
@@ -164,10 +164,14 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error("Booking save failed:", error);
+    const message =
+      error instanceof Error
+        ? error.message
+        : "Booking save failed. Check your Google Sheets settings and server logs.";
 
     return NextResponse.json(
       {
-        error: "Booking save failed. Check your Google Sheets settings and server logs.",
+        error: message,
       },
       { status: 500 },
     );
