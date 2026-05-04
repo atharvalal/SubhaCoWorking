@@ -58,7 +58,7 @@ const directContact = [
   { label: "Phone", value: "+977 980-8100067", href: "tel:+9779808100067" },
   {
     label: "Email",
-    value: "buddhalifestyle.np@gmail.com",
+    value: "",
     href: "mailto:buddhalifestyle.np@gmail.com",
   },
   {

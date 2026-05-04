@@ -168,7 +168,7 @@ export default function VirtualOfficePage() {
             <div className="contact-detail-list">
               {[
                 { label: "Phone", value: "+977 980-8100067", href: "tel:+9779808100067" },
-                { label: "Email", value: "buddhalifestyle.np@gmail.com", href: "mailto:buddhalifestyle.np@gmail.com" },
+                { label: "Email", value: "", href: "mailto:buddhalifestyle.np@gmail.com" },
                 {
                   label: "Location",
                   value: "Baluwatar, Kathmandu, Nepal",
