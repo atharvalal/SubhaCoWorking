@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createSign } from "node:crypto";
+import { createPrivateKey, createSign } from "node:crypto";
 
 export const runtime = "nodejs";
 
@@ -24,6 +24,62 @@ function missingEnvVars() {
   return requiredEnvVars.filter((key) => !process.env[key]);
 }
 
+function normalizePrivateKey(rawKey: string) {
+  let key = rawKey.trim();
+
+  if (
+    (key.startsWith('"') && key.endsWith('"')) ||
+    (key.startsWith("'") && key.endsWith("'"))
+  ) {
+    key = key.slice(1, -1);
+  }
+
+  key = key.replace(/\\n/g, "\n").replace(/\r\n/g, "\n");
+
+  if (!key.includes("BEGIN") && !key.includes("\n")) {
+    const decodedKey = Buffer.from(key, "base64").toString("utf8").trim();
+
+    if (decodedKey.includes("BEGIN")) {
+      key = decodedKey;
+    }
+  }
+
+  return key;
+}
+
+function isValidPrivateKey(key: string) {
+  return key.includes("BEGIN PRIVATE KEY") || key.includes("BEGIN RSA PRIVATE KEY");
+}
+
+function getPrivateKey() {
+  const privateKey = normalizePrivateKey(process.env.GOOGLE_SHEETS_PRIVATE_KEY!);
+
+  if (!isValidPrivateKey(privateKey)) {
+    throw new Error(
+      "GOOGLE_SHEETS_PRIVATE_KEY is not a valid private key. Paste the full private_key value from the Google service account JSON.",
+    );
+  }
+
+  return createPrivateKey({
+    key: privateKey,
+    format: "pem",
+  });
+}
+
+function isKeyDecodeError(error: unknown) {
+  if (!(error instanceof Error)) {
+    return false;
+  }
+
+  const code = "code" in error ? error.code : undefined;
+
+  return (
+    code === "ERR_OSSL_UNSUPPORTED" ||
+    error.message.includes("DECODER routines::unsupported") ||
+    error.message.includes("unsupported")
+  );
+}
+
 function toBase64Url(input: string) {
   return Buffer.from(input)
     .toString("base64")
@@ -35,7 +91,7 @@ function toBase64Url(input: string) {
 async function getGoogleAccessToken() {
   const now = Math.floor(Date.now() / 1000);
   const clientEmail = process.env.GOOGLE_SHEETS_CLIENT_EMAIL!;
-  const privateKey = process.env.GOOGLE_SHEETS_PRIVATE_KEY!.replace(/\\n/g, "\n");
+  const privateKey = getPrivateKey();
 
   const header = {
     alg: "RS256",
@@ -164,8 +220,9 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error("Booking save failed:", error);
-    const message =
-      error instanceof Error
+    const message = isKeyDecodeError(error)
+      ? "GOOGLE_SHEETS_PRIVATE_KEY is not in a valid format. In Vercel, paste the full private_key from the Google service account JSON with line breaks preserved, or store the PEM as base64."
+      : error instanceof Error
         ? error.message
         : "Booking save failed. Check your Google Sheets settings and server logs.";
 

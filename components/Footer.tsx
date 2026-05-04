@@ -50,7 +50,7 @@ export default function Footer() {
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.14em] text-stone-200 sm:mb-4 sm:text-sm sm:tracking-[0.16em]">Reach Out</p>
             <div className="grid gap-3">
               <a className="text-sm text-slate-300 transition hover:text-white sm:text-base" href="tel:+9779808100067">+977 980-8100067</a>
-              <a className="text-sm text-slate-300 transition hover:text-white sm:text-base" href="mailto:buddhalifestyle.np@gmail.com">buddhalifestyle.np@gmail.com</a>
+              <a className="text-sm text-slate-300 transition hover:text-white sm:text-base" href="mailto:buddhalifestyle.np@gmail.com"></a>
               <a
                 className="text-sm text-slate-300 transition hover:text-white sm:text-base"
                 href="https://maps.google.com/?q=Baluwatar,Kathmandu,Nepal"

@@ -5,7 +5,7 @@ const details = [
   {
     icon: Mail,
     label: "Email",
-    value: "buddhalifestyle.np@gmail.com",
+    value: "",
     href: "mailto:buddhalifestyle.np@gmail.com",
   },
   {
